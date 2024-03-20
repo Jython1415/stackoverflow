@@ -80,7 +80,7 @@ measurement_params <-
 measurement_params <-
   do.call(rbind, rep(list(measurement_params), repetition_count))
 measurement_params <-
-  measurement_params[sample(nrow(measurement_params)), ]
+  measurement_params[sample(nrow(measurement_params)),]
 
 # Create an expression to be evaluated for each test
 tests <- lapply(seq(nrow(measurement_params)), function(index) {
@@ -105,7 +105,7 @@ mem_results <- do.call(rbind, raw_mem_results)
 dimnames(mem_results)[[2]] <-
   c("id", "method", "portion", "memory", "exec_time")
 mem_results <- as.data.frame(mem_results) %>%
-  as_tibble() %>% 
+  as_tibble() %>%
   mutate_at(vars(method), factor) %>%
   mutate(memory = memory / 1e6) %>%
   mutate(method = recode(method, `1` = "Optimized", `2` = "Default"))
