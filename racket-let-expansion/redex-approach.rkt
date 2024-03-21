@@ -18,6 +18,8 @@
    (lambda (x ...) (let->lambda e_body))]
   [(let->lambda (let ([x e] ...) e_body))
    (let->lambda ((lambda (x ...) e_body) e ...))]
+  [(let->lambda (let* ([x e]) e_body))
+   (let->lambda (let ([x e]) e_body))]
   [(let->lambda (let* ([x0 e0] [x e]...) e_body))
    (let->lambda (let ([x1 e1]) (let* ([x e] ...) e_body)))]
   [(let->lambda (e ...))
@@ -32,9 +34,3 @@
 (term (let->lambda (let* ([x 1]
                           [y (+ x 1)])
                      (* x y))))
-
-;(for*/list ([a (cdr (x ...))] [b (cdr (e ...))]) (list a b))
-
-;(cdr (x ...))
-
-;(cdr (e ...))
