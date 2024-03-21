@@ -18,10 +18,8 @@
    (lambda (x ...) (let->lambda e_body))]
   [(let->lambda (let ([x e] ...) e_body))
    (let->lambda ((lambda (x ...) e_body) e ...))]
-  [(let->lambda (let* ([x e]) e_body))
-   (let->lambda (let ([x e]) e_body))]
-  [(let->lambda (let* ((x1 e1) (x2 e2) ...) e_body))
-   (let->lambda (let* ((x1 e1)) (let* ((x2 e2) ...) e_body)))]
+  [(let->lambda (let* ([x0 e0] [x e]...) e_body))
+   (let->lambda (let ([x1 e1]) (let* ([x e] ...) e_body)))]
   [(let->lambda (e ...))
    ((let->lambda e) ...)]
   [(let->lambda e)
